@@ -347,6 +347,8 @@
   📤 Carica PDF/FOTO Menu
 </button>
 
+<div id="listaMenu"></div>
+
 <br><br>
 
       <textarea id="menu"></textarea>
@@ -362,6 +364,21 @@
     </div>
 
   `;
+
+   const rispostaLista = await fetch("/lista-menu");
+
+  const files = await rispostaLista.json();
+
+  let lista = "";
+
+  files.forEach(file => {
+
+    lista += `<p>${file}</p>`;
+
+  });
+
+  document.getElementById("listaMenu").innerHTML = lista;
+
 
 }
 
@@ -404,6 +421,20 @@ async function caricaMenu() {
     body: formData
 
   });
+
+    const rispostaLista = await fetch("/lista-menu");
+
+  const files = await rispostaLista.json();
+
+  let lista = "";
+
+  files.forEach(file => {
+
+    lista += `<p>${file}</p>`;
+
+  });
+
+  document.getElementById("listaMenu").innerHTML = lista;
 
   alert("Menu caricato!");
 
