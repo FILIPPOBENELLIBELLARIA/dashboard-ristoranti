@@ -402,7 +402,13 @@ async function salvaMenuGiorno() {
 
   const testo = document.getElementById("menuGiorno").value;
 
-  await fetch("/salva-menu-giorno", {
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  dati.menuGiorno = testo;
+
+  await fetch("/salva-json", {
 
     method: "POST",
 
@@ -410,13 +416,11 @@ async function salvaMenuGiorno() {
       "Content-Type": "application/json"
     },
 
-    body: JSON.stringify({
-      menu: testo
-    })
+    body: JSON.stringify(dati)
 
   });
 
-  alert("Menu del Giorno salvato davvero!");
+  alert("Menu del Giorno salvato!");
 
 }
 

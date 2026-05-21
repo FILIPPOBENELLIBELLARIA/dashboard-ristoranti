@@ -142,6 +142,17 @@ app.delete("/elimina-menu/:nome", (req, res) => {
 
 });
 
+app.post("/salva-json", (req, res) => {
+
+  fs.writeFileSync(
+    "testo.json",
+    JSON.stringify(req.body, null, 2)
+  );
+
+  res.send("JSON salvato!");
+
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, "0.0.0.0", () => {
