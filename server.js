@@ -52,9 +52,18 @@ app.post("/salva-menu", (req, res) => {
 
   const nuovoMenu = req.body.menu;
 
-  fs.writeFileSync("menu.txt", nuovoMenu);
+  const dati = JSON.parse(
+    fs.readFileSync("testo.json", "utf8")
+  );
 
-   res.send("Menu salvato!");
+  dati.menu = nuovoMenu;
+
+  fs.writeFileSync(
+    "testo.json",
+    JSON.stringify(dati, null, 2)
+  );
+
+  res.send("Menu salvato!");
 
 });
 
