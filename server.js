@@ -93,6 +93,18 @@ app.post("/upload-foto", upload.single("foto"), (req, res) => {
 
 app.post("/upload-menu", uploadMenu.single("menu"), (req, res) => {
 
+  const files = fs.readdirSync("menu-upload");
+
+  files.forEach(file => {
+
+    if(file !== req.file.filename) {
+
+      fs.unlinkSync("menu-upload/" + file);
+
+    }
+
+  });
+
   res.send("Menu caricato!");
 
 });
