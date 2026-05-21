@@ -25,9 +25,11 @@
 
 async function mostraMenu() {
 
-  const risposta = await fetch("/lista-menu");
+  const rispostaTesto = await fetch("testo.json");
 
-  const files = await risposta.json();
+  const dati = await rispostaTesto.json();
+
+  const testoMenu = dati.menu;
 
   let html = `
 
@@ -42,6 +44,10 @@ async function mostraMenu() {
   <br>
 
 `;
+
+const risposta = await fetch("/lista-menu");
+
+const files = await risposta.json();
 
   files.forEach(file => {
 
