@@ -390,9 +390,11 @@ async function apriMenuGiorno() {
     </div>
 
   `;
-  const risposta = await fetch("menu-giorno.txt");
+  const risposta = await fetch("testo.json");
 
-const testo = await risposta.text();
+const dati = await risposta.json();
+
+const testo = dati.menuGiorno;
 
 document.getElementById("menuGiorno").value = testo;
 
@@ -401,6 +403,8 @@ document.getElementById("menuGiorno").value = testo;
 async function salvaMenuGiorno() {
 
   const testo = document.getElementById("menuGiorno").value;
+
+  alert(testo);
 
   const risposta = await fetch("testo.json");
 
