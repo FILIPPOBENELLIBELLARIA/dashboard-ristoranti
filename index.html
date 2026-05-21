@@ -29,15 +29,15 @@ async function mostraMenu() {
 
   const files = await risposta.json();
 
-  const rispostaTesto = await fetch("menu.txt");
-
-const testoMenu = await rispostaTesto.text();
-
   let html = `
 
   <h2>Menù</h2>
 
-  <pre>${testoMenu}</pre>
+  <div style="white-space: pre-wrap;">
+
+  ${testoMenu}
+
+</div>
 
   <br>
 
@@ -98,6 +98,12 @@ async function mostraGalleria() {
   const risposta = await fetch("/lista-foto");
 
   const files = await risposta.json();
+
+  const rispostaTesto = await fetch("testo.json");
+
+  const dati = await rispostaTesto.json();
+
+  const testoMenu = dati.menu;
 
   let html = "<h2>Galleria</h2>";
 
