@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestione Foto</title>
+</head>
+
+<body>
+
+  <h1>Gestione Foto</h1>
+
+  <button onclick="window.location.href='admin.html'">
+
+⬅ Torna al pannello
+
+</button>
+
+<br><br>
+
+  <input type="file" id="foto">
+
+  <br><br>
+
+  <button onclick="caricaFoto()">CARICA FOTO</button>
+
+  <hr>
+
+  <div id="lista-foto"></div>
+
+  <script>
+
+    async function caricaFoto() {
+
+      const fileInput = document.getElementById("foto");
+
+      const formData = new FormData();
+
+      formData.append("foto", fileInput.files[0]);
+
+      await fetch("/upload-foto", {
+
+        method: "POST",
+
+        body: formData
+
+      });
+
+      alert("Foto caricata!");
+
+      caricaListaFoto();
+
+    }
+
+    async function caricaListaFoto() {
+
+      const risposta = await fetch("/lista-foto");
+
+      const files = await risposta.json();
+
+      let html = "<h2>Foto caricate</h2>";
+
+      files.forEach(file => {
+
+        html += `
+        
+  <div style="margin-bottom:20px;">
+
+    <img 
+      src="gallery/${file}" 
+      width="120"
+      style="display:block; margin-bottom:10px;"
+    >
+
+    <p>${file}</p>
+
+    <button onclick="eliminaFoto('${file}')">
+      ELIMINA
+    </button>
+
+  </div>
+
+`;
+
+      });
+
+      document.getElementById("lista-foto").innerHTML = html;
+
+    }
+
+    async function eliminaFoto(nome) {
+
+      await fetch("/elimina-foto/" + nome, {
+
+        method: "DELETE"
+
+      });
+
+      alert("Foto eliminata!");
+
+      caricaListaFoto();
+
+    }
+
+    caricaListaFoto();
+
+  </script>
+
+</body>
+
+</html>

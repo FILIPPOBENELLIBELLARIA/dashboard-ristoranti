@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestione Menu</title>
+</head>
+
+<body>
+
+  <h1>Gestione Menu</h1>
+
+  <textarea id="menu" rows="10" cols="40"></textarea>
+
+  <br><br>
+
+  <button onclick="salvaMenu()">SALVA MENU</button>
+
+  <button onclick="window.location.href='admin.html'">
+
+TORNA
+
+</button>
+
+  <script>
+
+    async function caricaMenu() {
+
+      const risposta = await fetch("menu.txt");
+
+      const testo = await risposta.text();
+
+      document.getElementById("menu").value = testo;
+
+    }
+
+    async function salvaMenu() {
+
+      const testoMenu = document.getElementById("menu").value;
+
+      await fetch("/salva-menu", {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          menu: testoMenu
+        })
+
+      });
+
+      alert("Menu salvato!");
+
+    }
+
+    caricaMenu();
+
+  </script>
+
+</body>
+
+</html>

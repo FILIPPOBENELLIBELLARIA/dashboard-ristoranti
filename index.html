@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Ristorante</title>
+</head>
+
+<body>
+
+  <h1>Ristorante Demo</h1>
+
+<button onclick="mostraMenu()">🍝 Menù</button>
+<button 
+  id="btnMenuGiorno"
+  onclick="mostraMenuGiorno()"
+>
+  ⭐ Menu del Giorno
+</button>
+
+  <button onclick="mostraGalleria()">📸 Galleria</button>
+  <div id="contenuto"></div>
+
+<script>
+
+async function mostraMenu() {
+
+  const risposta = await fetch("/lista-menu");
+
+  const files = await risposta.json();
+
+  let html = `<h2>Menù</h2>`;
+
+  if(files.length > 0) {
+
+    const file = files[0];
+
+    if(file.endsWith(".pdf")) {
+
+      html += `
+        <iframe 
+          src="menu-upload/${file}" 
+          width="100%" 
+          height="700">
+        </iframe>
+      `;
+
+    } else {
+
+      html += `
+        <img 
+          src="menu-upload/${file}" 
+          style="width:100%; max-width:900px;"
+        >
+      `;
+
+    }
+
+  }
+
+  document.getElementById("contenuto").innerHTML = html;
+
+}
+
+async function mostraMenuGiorno() {
+
+  const risposta = await fetch("menu-giorno.txt");
+
+  const testo = await risposta.text();
+
+  document.getElementById("contenuto").innerHTML = `
+
+    <h2>⭐ Menu del Giorno</h2>
+
+    <pre>${testo}</pre>
+
+  `;
+
+}
+
+
+async function mostraGalleria() {
+
+  const risposta = await fetch("/lista-foto");
+
+  const files = await risposta.json();
+
+  let html = "<h2>Galleria</h2>";
+
+  files.forEach(file => {
+
+    html += `
+    
+      <img src="gallery/${file}" width="300">
+
+      <br><br>
+
+    `;
+
+  });
+
+  document.getElementById("contenuto").innerHTML = html;
+
+}
+
+const menuGiornoAttivo = localStorage.getItem("menuGiornoAttivo");
+
+if(menuGiornoAttivo === "false") {
+
+  document.getElementById("btnMenuGiorno").style.display = "none";
+
+}
+</script>
+</body>
+</html>
