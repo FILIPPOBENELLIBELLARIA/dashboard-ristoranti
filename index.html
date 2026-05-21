@@ -84,9 +84,11 @@ const files = await risposta.json();
 
 async function mostraMenuGiorno() {
 
-  const risposta = await fetch("menu-giorno.txt");
+  const risposta = await fetch("testo.json");
 
-  const testo = await risposta.text();
+const dati = await risposta.json();
+
+const testo = dati.menuGiorno;
 
   document.getElementById("contenuto").innerHTML = `
 
