@@ -135,6 +135,16 @@ app.delete("/elimina-foto/:nome", (req, res) => {
 
 });
 
+app.delete("/elimina-menu/:nome", (req, res) => {
+
+  const nomeFile = req.params.nome;
+
+  fs.unlinkSync("menu-upload/" + nomeFile);
+
+  res.send("Menu eliminato!");
+
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, "0.0.0.0", () => {

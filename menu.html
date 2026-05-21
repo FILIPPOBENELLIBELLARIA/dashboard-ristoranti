@@ -1,31 +1,24 @@
 <!DOCTYPE html>
-<html lang="it">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestione Menu</title>
-</head>
+      document.getElementById("lista-menu").innerHTML = html;
 
-<body>
+    }
 
-  <h1>Gestione Menu</h1>
+    async function eliminaMenu(nome) {
 
-  <textarea id="menu" rows="10" cols="40"></textarea>
+      await fetch("/elimina-menu/" + nome, {
 
-  <br><br>
+        method: "DELETE"
 
-  <button onclick="salvaMenu()">SALVA MENU</button>
+      });
 
-  <button onclick="window.location.href='admin.html'">
+      alert("Menu eliminato!");
 
-TORNA
+      caricaListaMenu();
 
-</button>
+    }
 
-  <script>
-
-    async function caricaMenu() {
+    async function caricaTestoMenu() {
 
       const risposta = await fetch("menu.txt");
 
@@ -53,11 +46,13 @@ TORNA
 
       });
 
-      alert("Menu salvato!");
+      alert("Testo menu salvato!");
 
     }
 
-    setInterval(caricaMenu, 3000);
+    caricaListaMenu();
+
+    caricaTestoMenu();
 
   </script>
 
