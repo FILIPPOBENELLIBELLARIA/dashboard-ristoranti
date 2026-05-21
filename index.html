@@ -29,7 +29,19 @@ async function mostraMenu() {
 
   const files = await risposta.json();
 
-  let html = `<h2>Menù</h2>`;
+  const rispostaTesto = await fetch("menu.txt");
+
+const testoMenu = await rispostaTesto.text();
+
+  let html = `
+
+  <h2>Menù</h2>
+
+  <pre>${testoMenu}</pre>
+
+  <br>
+
+`;
 
   files.forEach(file => {
 
