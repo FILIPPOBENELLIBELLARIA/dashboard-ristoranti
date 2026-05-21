@@ -390,6 +390,11 @@ async function apriMenuGiorno() {
     </div>
 
   `;
+  const risposta = await fetch("menu-giorno.txt");
+
+const testo = await risposta.text();
+
+document.getElementById("menuGiorno").value = testo;
 
 }
 
