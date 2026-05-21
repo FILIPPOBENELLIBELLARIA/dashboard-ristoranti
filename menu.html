@@ -155,13 +155,13 @@
 
     async function caricaTestoMenu() {
 
-      const risposta = await fetch("menu.txt");
+  const risposta = await fetch("testo.json");
 
-      const testo = await risposta.text();
+  const dati = await risposta.json();
 
-      document.getElementById("menu").value = testo;
+  document.getElementById("menu").value = dati.menu;
 
-    }
+}
 
     async function salvaMenu() {
 
