@@ -70,7 +70,7 @@ app.post("/salva-menu-giorno", (req, res) => {
 
 app.post("/salva-benvenuto", (req, res) => {
 
-  const testo = req.body.menu;
+  const testo = req.body.testo;
 
   fs.writeFileSync("benvenuto.txt", testo);
 
