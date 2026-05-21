@@ -1,4 +1,139 @@
 <!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestione Menu</title>
+</head>
+
+<body>
+
+  <h1>Gestione Menu</h1>
+
+  <button onclick="window.location.href='admin.html'">
+
+    ⬅ Torna al pannello
+
+  </button>
+
+  <br><br>
+
+  <input type="file" id="menuFile">
+
+  <br><br>
+
+  <button onclick="caricaMenu()">
+
+    📤 CARICA MENU
+
+  </button>
+
+  <hr>
+
+  <h2>Testo Menu</h2>
+
+  <textarea id="menu" rows="10" cols="40"></textarea>
+
+  <br><br>
+
+  <button onclick="salvaMenu()">
+
+    💾 SALVA TESTO
+
+  </button>
+
+  <hr>
+
+  <div id="lista-menu"></div>
+
+  <script>
+
+    async function caricaMenu() {
+
+      const fileInput = document.getElementById("menuFile");
+
+      const formData = new FormData();
+
+      formData.append("menu", fileInput.files[0]);
+
+      await fetch("/upload-menu", {
+
+        method: "POST",
+
+        body: formData
+
+      });
+
+      alert("Menu caricato!");
+
+      caricaListaMenu();
+
+    }
+
+    async function caricaListaMenu() {
+
+      const risposta = await fetch("/lista-menu");
+
+      const files = await risposta.json();
+
+      let html = "<h2>Menu caricati</h2>";
+
+      files.forEach(file => {
+
+        if(file.endsWith(".pdf")) {
+
+          html += `
+
+            <div style="margin-bottom:20px;">
+
+              <p>${file}</p>
+
+              <a href="menu-upload/${file}" target="_blank">
+
+                APRI PDF
+
+              </a>
+
+              <br><br>
+
+              <button onclick="eliminaMenu('${file}')">
+
+                ELIMINA
+
+              </button>
+
+            </div>
+
+          `;
+
+        } else {
+
+          html += `
+
+            <div style="margin-bottom:20px;">
+
+              <img 
+                src="menu-upload/${file}" 
+                width="200"
+                style="display:block; margin-bottom:10px;"
+              >
+
+              <p>${file}</p>
+
+              <button onclick="eliminaMenu('${file}')">
+
+                ELIMINA
+
+              </button>
+
+            </div>
+
+          `;
+
+        }
+
+      });
 
       document.getElementById("lista-menu").innerHTML = html;
 
