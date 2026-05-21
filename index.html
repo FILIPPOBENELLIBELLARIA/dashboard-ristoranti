@@ -31,9 +31,7 @@ async function mostraMenu() {
 
   let html = `<h2>Menù</h2>`;
 
-  if(files.length > 0) {
-
-    const file = files[files.length - 1];
+  files.forEach(file => {
 
     if(file.endsWith(".pdf")) {
 
@@ -43,6 +41,8 @@ async function mostraMenu() {
           width="100%" 
           height="700">
         </iframe>
+
+        <br><br>
       `;
 
     } else {
@@ -52,11 +52,13 @@ async function mostraMenu() {
           src="menu-upload/${file}" 
           style="width:100%; max-width:900px;"
         >
+
+        <br><br>
       `;
 
     }
 
-  }
+  });
 
   document.getElementById("contenuto").innerHTML = html;
 
