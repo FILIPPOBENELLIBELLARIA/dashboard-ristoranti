@@ -331,78 +331,7 @@
 
  async function apriMenu() {
 
-  document.getElementById("contenuto").innerHTML = `
-
-    <div class="card">
-
-      <h1>Gestione Menu</h1>
-
-      <br>
-
-<input type="file" id="fileMenu">
-
-<br><br>
-
-<button onclick="caricaMenu()">
-  📤 Carica PDF/FOTO Menu
-</button>
-
-<div id="listaMenu"></div>
-
-<br><br>
-
-      <textarea id="menu"></textarea>
-
-      <div class="azioni">
-
-        <button onclick="salvaMenu()">
-          💾 Salva Menu
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-   const rispostaLista = await fetch("/lista-menu");
-
-  const files = await rispostaLista.json();
-
-  let lista = "";
-
-  files.forEach(file => {
-
-    lista += `<p>${file}</p>`;
-
-  });
-
-  document.getElementById("listaMenu").innerHTML = lista;
-
-
-}
-
-async function salvaMenu() {
-
-  const testo = document.getElementById("menu").value;
-
-  alert(testo);
-
-  await fetch("/salva-menu", {
-
-    method: "POST",
-
-    headers: {
-      "Content-Type": "application/json"
-    },
-
-    body: JSON.stringify({
-      menu: testo
-    })
-
-  });
-
-  alert("Menu salvato davvero!");
+  window.location.href = "menu.html";
 
 }
 
