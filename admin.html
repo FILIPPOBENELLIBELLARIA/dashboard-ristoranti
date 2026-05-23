@@ -638,6 +638,28 @@ async function salvaBenvenuto() {
 
     }
 
+    async function caricaIcona() {
+
+  const fileInput = document.getElementById("icona");
+
+  const formData = new FormData();
+
+  formData.append("icona", fileInput.files[0]);
+
+  await fetch("/upload-icona", {
+
+    method: "POST",
+
+    body: formData
+
+  });
+
+  alert("Icona caricata!");
+
+  apriIcona();
+
+}
+
     async function eliminaFoto(nome) {
 
       await fetch("/elimina-foto/" + nome, {

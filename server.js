@@ -44,6 +44,26 @@ const uploadMenu = multer({
 
 });
 
+const uploadIcona = multer({
+
+  storage: multer.diskStorage({
+
+    destination: function (req, file, cb) {
+
+      cb(null, "icona/");
+
+    },
+
+    filename: function (req, file, cb) {
+
+      cb(null, "logo.png");
+
+    }
+
+  })
+
+});
+
 app.use(express.json());
 
 app.use(express.static(__dirname));
@@ -103,6 +123,12 @@ app.post("/upload-foto", upload.single("foto"), (req, res) => {
 app.post("/upload-menu", uploadMenu.single("menu"), (req, res) => {
 
   res.send("Menu caricato!");
+
+});
+
+app.post("/upload-icona", uploadIcona.single("icona"), (req, res) => {
+
+  res.send("Icona caricata!");
 
 });
 
