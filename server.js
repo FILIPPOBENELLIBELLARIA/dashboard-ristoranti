@@ -56,7 +56,7 @@ const uploadIcona = multer({
 
     filename: function (req, file, cb) {
 
-      cb(null, "logo.png");
+      cb(null, file.originalname);
 
     }
 
