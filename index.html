@@ -88,13 +88,7 @@ async function mostraMenu() {
   const testoMenu = dati.menu;
 
   let html = `
-
-  <button onclick="tornaHome()">
-
-⬅ Torna Home
-
-</button>
-
+  
   <h2>Menù</h2>
 
   <div style="white-space: pre-wrap; word-wrap: break-word;">
@@ -139,6 +133,17 @@ const files = await risposta.json();
     }
 
   });
+
+  html += `
+
+<button onclick="tornaHome()">
+
+⬅ Torna Home
+
+</button>
+
+`;
+
 
   document.getElementById("contenuto").innerHTML = html;
   document.getElementById("contenuto").style.display = "block";
