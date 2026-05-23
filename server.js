@@ -148,6 +148,14 @@ app.get("/lista-menu", (req, res) => {
 
 });
 
+app.get("/lista-icona", (req, res) => {
+
+  const files = fs.readdirSync("icona");
+
+  res.json(files);
+
+});
+
 app.delete("/elimina-foto/:nome", (req, res) => {
 
   const nomeFile = req.params.nome;

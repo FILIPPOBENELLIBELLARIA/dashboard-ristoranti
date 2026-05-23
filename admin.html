@@ -545,6 +545,9 @@ document.getElementById("testoBenvenuto").value =
 }
 
 async function apriIcona() {
+  const risposta = await fetch("/lista-icona");
+
+  const files = await risposta.json();
 
   let html = `
 
