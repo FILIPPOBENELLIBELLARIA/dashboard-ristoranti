@@ -267,6 +267,18 @@
   👋 Benvenuto
 </div>
 
+<div 
+  onclick="apriIcona()"
+  style="
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    margin-bottom:20px;
+  "
+>
+  🖼️ Icona
+</div>
+
 
     </div> 
    
@@ -522,6 +534,13 @@ async function apriBenvenuto() {
     </div>
 
   `;
+
+  const risposta = await fetch("testo.json");
+
+const dati = await risposta.json();
+
+document.getElementById("testoBenvenuto").value =
+  dati.benvenuto;
 
 }
 
