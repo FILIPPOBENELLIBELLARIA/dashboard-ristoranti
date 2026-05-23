@@ -545,9 +545,6 @@ document.getElementById("testoBenvenuto").value =
 }
 
 async function apriIcona() {
-  const risposta = await fetch("/lista-icona");
-
-  const files = await risposta.json();
 
   let html = `
 
@@ -569,6 +566,7 @@ async function apriIcona() {
               type="file" 
               id="icona"
               hidden
+              onchange="anteprimaIcona(event)"
             >
 
           </label>
@@ -578,7 +576,7 @@ async function apriIcona() {
           </button>
 
           <button onclick="window.location.href='admin.html'">
-           ⬅ Torna Home
+            ⬅ Torna Home
           </button>
 
         </div>
@@ -587,19 +585,41 @@ async function apriIcona() {
 
       <div class="galleria">
 
-      <div class="foto-item">
+        <div class="foto-item">
 
-    ${files.length > 0 ? `<img src="icona/${files[0]}">` : ""}
+          <img 
+            id="previewIcona"
+            src="/icona/logo.png"
+            style="max-width:200px; border-radius:12px;"
+          >
 
-    </div>
+        </div>
 
-    </div>
-      
+      </div>
+
     </div>
 
   `;
 
   document.getElementById("contenuto").innerHTML = html;
+
+}
+
+function anteprimaIcona(event) {
+
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+
+    document.getElementById("previewIcona").src = e.target.result;
+
+  };
+
+  reader.readAsDataURL(file);
 
 }
 
