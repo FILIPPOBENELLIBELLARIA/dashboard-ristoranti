@@ -77,6 +77,8 @@ button {
 <script>
 
 async function mostraMenu() {
+  
+  document.getElementById("home").style.display = "none";
 
   const rispostaTesto = await fetch("testo.json");
 
@@ -132,6 +134,7 @@ const files = await risposta.json();
   });
 
   document.getElementById("contenuto").innerHTML = html;
+  document.getElementById("contenuto").style.display = "block";
 
 }
 
