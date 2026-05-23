@@ -689,8 +689,8 @@ async function salvaBenvenuto() {
 
   alert("Icona caricata!");
 
-  apriIcona();
-
+document.getElementById("previewIcona").src =
+  "/icona/logo.png?" + new Date().getTime();
 }
 
     async function eliminaFoto(nome) {
