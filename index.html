@@ -160,6 +160,8 @@ function tornaHome() {
 
 async function mostraMenuGiorno() {
 
+document.getElementById("home").style.display = "none";  
+
 const risposta = await fetch("testo.json");
 
 const dati = await risposta.json();
@@ -168,13 +170,20 @@ const testo = dati.menuGiorno;
 
   document.getElementById("contenuto").innerHTML = `
 
-   <h2>⭐ Menu del Giorno</h2>
+   
+  <h2>⭐ Menu del Giorno</h2>
   
     <div style="white-space: pre-wrap; overflow-wrap: break-word; width:100%;">
 
   ${testo}
 
 </div>
+
+<button onclick="tornaHome()">
+
+⬅ Torna Home
+
+</button>
 
   `;
 
