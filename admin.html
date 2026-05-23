@@ -544,6 +544,52 @@ document.getElementById("testoBenvenuto").value =
 
 }
 
+async function apriIcona() {
+
+  let html = `
+
+    <div class="card">
+
+      <div style="display:flex; justify-content:flex-start; gap:20px; align-items:center; margin-bottom:30px;">
+
+        <h1 style="margin:0;">
+          Icona / Logo
+        </h1>
+
+        <div class="upload" style="margin:0; display:flex; gap:10px; align-items:center;">
+
+          <label class="file-btn">
+
+            📁 Scegli File
+
+            <input 
+              type="file" 
+              id="icona"
+              hidden
+            >
+
+          </label>
+
+          <button onclick="caricaIcona()">
+            📤 Carica Icona
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="galleria">
+
+      </div>
+
+    </div>
+
+  `;
+
+  document.getElementById("contenuto").innerHTML = html;
+
+}
+
 async function salvaBenvenuto() {
 
   const testo = document.getElementById("testoBenvenuto").value;
