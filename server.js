@@ -126,9 +126,27 @@ app.post("/upload-menu", uploadMenu.single("menu"), (req, res) => {
 
 });
 
-app.post("/upload-icona", uploadIcona.single("icona"), (req, res) => {
+app.post("/upload-icona", (req, res) => {
 
-  res.send("Icona caricata!");
+  const files = fs.readdirSync("icona");
+
+  files.forEach(file => {
+
+    fs.unlinkSync("icona/" + file);
+
+  });
+
+  uploadIcona.single("icona")(req, res, function(err) {
+
+    if(err) {
+
+      return res.status(500).send("Errore upload");
+
+    }
+
+    res.send("Icona caricata!");
+
+  });
 
 });
 
