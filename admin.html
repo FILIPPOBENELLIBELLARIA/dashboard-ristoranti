@@ -546,6 +546,10 @@ document.getElementById("testoBenvenuto").value =
 
 async function apriIcona() {
 
+  const risposta = await fetch("/lista-icona");
+
+  const files = await risposta.json();
+
   let html = `
 
     <div class="card">
@@ -585,15 +589,27 @@ async function apriIcona() {
 
       <div class="galleria">
 
-        <div class="foto-item">
+  `;
 
-          <img 
-            id="previewIcona"
-            src="/icona/logo.png?${Date.now()}"
-            style="max-width:200px; border-radius:12px;"
-          >
+  files.forEach(file => {
 
-        </div>
+    html += `
+
+      <div class="foto-item">
+
+        <img 
+          id="previewIcona"
+          src="/icona/${file}?${Date.now()}"
+          style="max-width:200px; border-radius:12px;"
+        >
+
+      </div>
+
+    `;
+
+  });
+
+  html += `
 
       </div>
 
