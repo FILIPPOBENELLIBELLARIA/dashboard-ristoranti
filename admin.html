@@ -546,6 +546,26 @@ document.getElementById("testoBenvenuto").value =
 
 async function apriIcona() {
 
+  const risposta = await fetch("/lista-icona");
+
+  const files = await risposta.json();
+
+  let immagine = "";
+
+  if(files.length > 0) {
+
+    immagine = `
+    
+      <img 
+        id="previewIcona"
+        src="/icona/${files[0]}"
+        style="max-width:200px; border-radius:12px;"
+      >
+
+    `;
+
+  }
+
   let html = `
 
     <div class="card">
@@ -587,11 +607,7 @@ async function apriIcona() {
 
         <div class="foto-item">
 
-          <img 
-            id="previewIcona"
-            src="/icona/logo.png"
-            style="max-width:200px; border-radius:12px;"
-          >
+          ${immagine}
 
         </div>
 
