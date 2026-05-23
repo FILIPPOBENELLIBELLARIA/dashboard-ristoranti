@@ -192,6 +192,8 @@ const testo = dati.menuGiorno;
 
 async function mostraGalleria() {
 
+  document.getElementById("home").style.display = "none";
+
   const risposta = await fetch("/lista-foto");
 
   const files = await risposta.json();
@@ -202,7 +204,11 @@ async function mostraGalleria() {
 
   const testoMenu = dati.menu;
 
-  let html = "<h2>Galleria</h2>";
+  let html = `
+  
+  <h2>Galleria</h2>
+  
+  `;
 
   files.forEach(file => {
 
@@ -216,7 +222,18 @@ async function mostraGalleria() {
 
   });
 
+  html += `
+
+<button onclick="tornaHome()">
+
+⬅ Torna Home
+
+</button>
+
+`;
+
   document.getElementById("contenuto").innerHTML = html;
+  document.getElementById("contenuto").style.display = "block";
 
 }
  async function caricaBenvenuto() {
