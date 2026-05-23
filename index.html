@@ -19,6 +19,10 @@
 </button>
 
   <button onclick="mostraGalleria()">📸 Galleria</button>
+  
+  <div id="benvenuto"></div>
+  <br>
+  
   <div id="contenuto"></div>
 
 <script>
@@ -84,7 +88,7 @@ const files = await risposta.json();
 
 async function mostraMenuGiorno() {
 
-  const risposta = await fetch("testo.json");
+const risposta = await fetch("testo.json");
 
 const dati = await risposta.json();
 
@@ -134,7 +138,25 @@ async function mostraGalleria() {
   document.getElementById("contenuto").innerHTML = html;
 
 }
+ async function caricaBenvenuto() {
 
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  document.getElementById("benvenuto").innerHTML = `
+
+    <div style="white-space: pre-wrap; overflow-wrap: break-word;">
+
+      ${dati.benvenuto}
+
+    </div>
+
+  `;
+
+}
+
+caricaBenvenuto();
 const menuGiornoAttivo = localStorage.getItem("menuGiornoAttivo");
 
 if(menuGiornoAttivo === "false") {
