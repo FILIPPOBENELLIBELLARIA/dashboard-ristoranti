@@ -529,9 +529,13 @@ async function salvaBenvenuto() {
 
   const testo = document.getElementById("testoBenvenuto").value;
 
-  alert(testo);
+  const risposta = await fetch("testo.json");
 
-  await fetch("/salva-benvenuto", {
+  const dati = await risposta.json();
+
+  dati.benvenuto = testo;
+
+  await fetch("/salva-json", {
 
     method: "POST",
 
@@ -539,9 +543,7 @@ async function salvaBenvenuto() {
       "Content-Type": "application/json"
     },
 
-    body: JSON.stringify({
-      testo: testo
-    })
+    body: JSON.stringify(dati)
 
   });
 
