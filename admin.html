@@ -413,11 +413,41 @@
 
  async function apriMenu() {
 
-  window.location.href = "menu.html";
+document.getElementById("contenuto").innerHTML = `
+
+  <div class="card">
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:40px;">
+
+      <div style="flex:1;">
+
+        <h1>Testo Menu</h1>
+
+        <textarea id="testoMenu"></textarea>
+
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:15px; min-width:250px;">
+
+        <button onclick="salvaTestoMenu()">
+          💾 Salva Testo
+        </button>
+
+        <button onclick="window.location.href='admin.html'">
+          ⬅ Torna Home
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+`;
 
 }
 
-async function caricaMenu() {
+  async function caricaMenu() {
 
   const fileInput = document.getElementById("fileMenu");
 
