@@ -639,18 +639,29 @@ async function apriTelefono() {
 
     <div class="card">
 
-      <h1>📞 Telefono</h1>
+      <div style="display:flex; justify-content:flex-start; gap:20px; align-items:center; margin-bottom:30px;">
+
+  <h1 style="margin:0;">
+    📞 Telefono
+  </h1>
+
+  <div class="upload" style="margin:0; display:flex; gap:10px; align-items:center;">
+
+    <button onclick="salvaTelefono()">
+      💾 Salva
+    </button>
+
+    <button onclick="window.location.href='admin.html'">
+      ⬅ Torna Home
+    </button>
+
+  </div>
+
+</div>
 
       <textarea id="telefono"></textarea>
 
-      <div class="azioni">
-
-        <button onclick="salvaTelefono()">
-          💾 Salva
-        </button>
-
-      </div>
-
+      
     </div>
 
   `;
