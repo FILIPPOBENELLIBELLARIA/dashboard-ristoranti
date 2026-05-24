@@ -290,6 +290,65 @@
 >
   📞 Telefono
 </div>
+<div 
+  onclick="apriMaps()"
+  style="
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    margin-bottom:20px;
+  "
+>
+  📍 Posizione Maps
+</div>
+<div 
+  onclick="apriInstagram()"
+  style="
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    margin-bottom:20px;
+  "
+>
+  📸 Instagram
+</div>
+<div 
+  onclick="apriFacebook()"
+  style="
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    margin-bottom:20px;
+  "
+>
+  📘 Facebook
+</div>
+
+<div 
+  onclick="apriMail()"
+  style="
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    margin-bottom:20px;
+  "
+>
+  📧 Mail
+</div>
+
+<div 
+  onclick="apriWhatsapp()"
+  style="
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    margin-bottom:20px;
+  "
+>
+  💬 WhatsApp
+</div>
+
+</div> 
 
 
     </div> 
@@ -675,6 +734,209 @@ document.getElementById("telefono").value =
 
 }
 
+async function apriMaps() {
+
+  document.getElementById("contenuto").innerHTML = `
+
+    <div class="card">
+
+      <div style="display:flex; justify-content:flex-start; gap:20px; align-items:center; margin-bottom:30px;">
+
+        <h1 style="margin:0;">
+          📍 Posizione Maps
+        </h1>
+
+        <div class="upload" style="margin:0; display:flex; gap:10px; align-items:center;">
+
+          <button onclick="salvaMaps()">
+            💾 Salva
+          </button>
+
+          <button onclick="window.location.href='admin.html'">
+            ⬅ Torna Home
+          </button>
+
+        </div>
+
+      </div>
+
+      <textarea id="maps"></textarea>
+
+    </div>
+
+  `;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  document.getElementById("maps").value =
+    dati.maps || "";
+
+}
+
+async function apriInstagram() {
+
+  document.getElementById("contenuto").innerHTML = `
+
+    <div class="card">
+
+      <div style="display:flex; justify-content:flex-start; gap:20px; align-items:center; margin-bottom:30px;">
+
+        <h1 style="margin:0;">
+          📸 Instagram
+        </h1>
+
+        <div class="upload" style="margin:0; display:flex; gap:10px; align-items:center;">
+
+          <button onclick="salvaInstagram()">
+            💾 Salva
+          </button>
+
+          <button onclick="window.location.href='admin.html'">
+            ⬅ Torna Home
+          </button>
+
+        </div>
+
+      </div>
+
+      <textarea id="instagram"></textarea>
+
+    </div>
+
+  `;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  document.getElementById("instagram").value =
+    dati.instagram || "";
+
+}
+
+async function apriFacebook() {
+
+  document.getElementById("contenuto").innerHTML = `
+
+    <div class="card">
+
+      <div style="display:flex; justify-content:flex-start; gap:20px; align-items:center; margin-bottom:30px;">
+
+        <h1 style="margin:0;">
+          📘 Facebook
+        </h1>
+
+        <div class="upload" style="margin:0; display:flex; gap:10px; align-items:center;">
+
+          <button onclick="salvaFacebook()">
+            💾 Salva
+          </button>
+
+          <button onclick="window.location.href='admin.html'">
+            ⬅ Torna Home
+          </button>
+
+        </div>
+
+      </div>
+
+      <textarea id="facebook"></textarea>
+
+    </div>
+
+  `;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  document.getElementById("facebook").value =
+    dati.facebook || "";
+
+}
+
+async function apriMail() {
+
+  document.getElementById("contenuto").innerHTML = `
+
+    <div class="card">
+
+      <div style="display:flex; justify-content:flex-start; gap:20px; align-items:center; margin-bottom:30px;">
+
+        <h1 style="margin:0;">
+          📧 Mail
+        </h1>
+
+        <div class="upload" style="margin:0; display:flex; gap:10px; align-items:center;">
+
+          <button onclick="salvaMail()">
+            💾 Salva
+          </button>
+
+          <button onclick="window.location.href='admin.html'">
+            ⬅ Torna Home
+          </button>
+
+        </div>
+
+      </div>
+
+      <textarea id="mail"></textarea>
+
+    </div>
+
+  `;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  document.getElementById("mail").value =
+    dati.mail || "";
+
+}async function apriWhatsapp() {
+
+  document.getElementById("contenuto").innerHTML = `
+
+    <div class="card">
+
+      <div style="display:flex; justify-content:flex-start; gap:20px; align-items:center; margin-bottom:30px;">
+
+        <h1 style="margin:0;">
+          💬 WhatsApp
+        </h1>
+
+        <div class="upload" style="margin:0; display:flex; gap:10px; align-items:center;">
+
+          <button onclick="salvaWhatsapp()">
+            💾 Salva
+          </button>
+
+          <button onclick="window.location.href='admin.html'">
+            ⬅ Torna Home
+          </button>
+
+        </div>
+
+      </div>
+
+      <textarea id="whatsapp"></textarea>
+
+    </div>
+
+  `;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  document.getElementById("whatsapp").value =
+    dati.whatsapp || "";
+
+}
+
 function anteprimaIcona(event) {
 
   const file = event.target.files[0];
@@ -742,6 +1004,136 @@ async function salvaTelefono() {
   });
 
   alert("Telefono salvato!");
+
+}
+
+async function salvaMaps() {
+
+  const testo = document.getElementById("maps").value;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  dati.maps = testo;
+
+  await fetch("/salva-json", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(dati)
+
+  });
+
+  alert("Maps salvato!");
+
+}
+
+async function salvaInstagram() {
+
+  const testo = document.getElementById("instagram").value;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  dati.instagram = testo;
+
+  await fetch("/salva-json", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(dati)
+
+  });
+
+  alert("Instagram salvato!");
+
+}
+
+async function salvaFacebook() {
+
+  const testo = document.getElementById("facebook").value;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  dati.facebook = testo;
+
+  await fetch("/salva-json", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(dati)
+
+  });
+
+  alert("Facebook salvato!");
+
+}
+
+async function salvaMail() {
+
+  const testo = document.getElementById("mail").value;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  dati.mail = testo;
+
+  await fetch("/salva-json", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(dati)
+
+  });
+
+  alert("Mail salvata!");
+
+}
+
+async function salvaWhatsapp() {
+
+  const testo = document.getElementById("whatsapp").value;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  dati.whatsapp = testo;
+
+  await fetch("/salva-json", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(dati)
+
+  });
+
+  alert("WhatsApp salvato!");
 
 }
 
