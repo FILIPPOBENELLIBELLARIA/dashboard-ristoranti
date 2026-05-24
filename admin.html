@@ -417,29 +417,27 @@ document.getElementById("contenuto").innerHTML = `
 
   <div class="card">
 
-    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:40px;">
+    <div style="display:flex; justify-content:flex-start; gap:20px; align-items:center; margin-bottom:30px;">
 
-      <div style="flex:1;">
+      <h1 style="margin:0;">
+        Testo Menu
+      </h1>
 
-        <h1>Testo Menu</h1>
+      <div class="upload" style="margin:0; display:flex; gap:10px; align-items:center;">
 
-        <textarea id="testoMenu"></textarea>
-
-      </div>
-
-      <div style="display:flex; flex-direction:column; gap:15px; min-width:250px;">
-
-        <button onclick="salvaTestoMenu()">
+        <button class="file-btn" onclick="salvaTestoMenu()">
           💾 Salva Testo
         </button>
 
-        <button onclick="window.location.href='admin.html'">
+        <button class="file-btn" onclick="window.location.href='admin.html'">
           ⬅ Torna Home
         </button>
 
       </div>
 
     </div>
+
+    <textarea id="testoMenu"></textarea>
 
   </div>
 
