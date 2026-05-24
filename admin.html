@@ -459,6 +459,43 @@ document.getElementById("contenuto").innerHTML = `
 
 `;
 
+const rispostaLista = await fetch("/lista-menu");
+
+const files = await rispostaLista.json();
+
+let htmlFiles = "";
+
+files.forEach(file => {
+
+  if(file.endsWith(".pdf")) {
+
+    htmlFiles += `
+
+      <p>${file}</p>
+
+      <br>
+
+    `;
+
+  } else {
+
+    htmlFiles += `
+
+      <img 
+        src="menu-upload/${file}" 
+        style="max-width:250px; border-radius:12px; margin-top:20px;"
+      >
+
+      <br><br>
+
+    `;
+
+  }
+
+});
+
+document.getElementById("contenuto").innerHTML += htmlFiles;
+
 }
 
   async function caricaMenu() {
