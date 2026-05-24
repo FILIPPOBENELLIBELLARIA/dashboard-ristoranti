@@ -524,22 +524,9 @@ document.getElementById("testoMenu").value =
     body: formData
 
   });
-
-    const rispostaLista = await fetch("/lista-menu");
-
-  const files = await rispostaLista.json();
-
-  let lista = "";
-
-  files.forEach(file => {
-
-    lista += `<p>${file}</p>`;
-
-  });
-
-  document.getElementById("listaMenu").innerHTML = lista;
-
-  alert("Menu caricato!");
+     
+    apriMenu();
+    alert("Menu caricato!");
 
 }
 
