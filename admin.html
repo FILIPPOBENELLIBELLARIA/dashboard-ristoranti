@@ -481,15 +481,20 @@ files.forEach(file => {
 
     htmlFiles += `
 
-      <img 
-        src="menu-upload/${file}" 
-        style="max-width:250px; border-radius:12px; margin-top:20px;"
-      >
+  <div class="foto-item">
 
-      <br><br>
+    <img 
+      src="menu-upload/${file}" 
+      style="max-width:250px; border-radius:12px; margin-top:20px;"
+    >
 
-    `;
+    <button onclick="eliminaMenu('${file}')">
+      ELIMINA
+    </button>
 
+  </div>
+
+`;
   }
 
 });
