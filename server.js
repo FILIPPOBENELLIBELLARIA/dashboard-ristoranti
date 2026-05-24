@@ -68,6 +68,8 @@ app.use(express.json());
 
 app.use(express.static(__dirname));
 
+app.use("/menu-upload", express.static("menu-upload"));
+
 app.post("/salva-menu", (req, res) => {
 
   const nuovoMenu = req.body.menu;
