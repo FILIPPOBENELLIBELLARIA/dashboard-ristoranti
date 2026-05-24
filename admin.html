@@ -279,6 +279,18 @@
   🖼️ Icona
 </div>
 
+<div 
+  onclick="apriTelefono()"
+  style="
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    margin-bottom:20px;
+  "
+>
+  📞 Telefono
+</div>
+
 
     </div> 
    
@@ -618,6 +630,30 @@ async function apriIcona() {
   `;
 
   document.getElementById("contenuto").innerHTML = html;
+
+}
+
+async function apriTelefono() {
+
+  document.getElementById("contenuto").innerHTML = `
+
+    <div class="card">
+
+      <h1>📞 Telefono</h1>
+
+      <textarea id="telefono"></textarea>
+
+      <div class="azioni">
+
+        <button onclick="salvaTelefono()">
+          💾 Salva
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
 
 }
 
