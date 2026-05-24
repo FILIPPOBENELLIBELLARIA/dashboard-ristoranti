@@ -536,14 +536,24 @@ async function apriMenuGiorno() {
 
     <div class="card">
 
-      <h1>Menu del Giorno</h1>
+      <div style="display:flex; justify-content:flex-start; gap:20px; align-items:center; margin-bottom:20px;">
+
+        <h1 style="margin:0;">
+          Menu del Giorno
+        </h1>
+
+      </div>
 
       <textarea id="menuGiorno"></textarea>
 
-      <div class="azioni">
+      <div style="display:flex; gap:20px; margin-top:30px;">
 
-        <button onclick="salvaMenuGiorno()">
+        <button class="file-btn" onclick="salvaMenuGiorno()">
           💾 Salva Menu Giorno
+        </button>
+
+        <button class="file-btn" onclick="window.location.href='admin.html'">
+          ⬅ Torna Home
         </button>
 
       </div>
@@ -551,13 +561,11 @@ async function apriMenuGiorno() {
     </div>
 
   `;
+
   const risposta = await fetch("testo.json");
+  const dati = await risposta.json();
 
-const dati = await risposta.json();
-
-const testo = dati.menuGiorno;
-
-document.getElementById("menuGiorno").value = testo;
+  document.getElementById("menuGiorno").value = dati.menuGiorno || "";
 
 }
 
@@ -674,9 +682,17 @@ async function apriBenvenuto() {
 
       <div class="azioni">
 
-        <button onclick="salvaBenvenuto()">
-          💾 Salva
-        </button>
+        <div style="display:flex; gap:20px; margin-top:30px;">
+
+  <button class="file-btn" onclick="salvaBenvenuto()">
+    💾 Salva
+  </button>
+
+  <button class="file-btn" onclick="window.location.href='admin.html'">
+    ⬅ Torna Home
+  </button>
+
+</div>
 
       </div>
 
