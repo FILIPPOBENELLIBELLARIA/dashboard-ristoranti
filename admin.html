@@ -655,6 +655,13 @@ async function apriTelefono() {
 
   `;
 
+  const risposta = await fetch("testo.json");
+
+const dati = await risposta.json();
+
+document.getElementById("telefono").value =
+  dati.telefono || "";
+
 }
 
 function anteprimaIcona(event) {
@@ -698,6 +705,32 @@ async function salvaBenvenuto() {
   });
 
   alert("Benvenuto salvato!");
+
+}
+
+async function salvaTelefono() {
+
+  const testo = document.getElementById("telefono").value;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  dati.telefono = testo;
+
+  await fetch("/salva-json", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(dati)
+
+  });
+
+  alert("Telefono salvato!");
 
 }
 
