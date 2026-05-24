@@ -1093,6 +1093,20 @@ async function salvaTestoMenu() {
 
 }
 
+async function eliminaMenu(nome) {
+
+  await fetch("/elimina-menu/" + nome, {
+
+    method: "DELETE"
+
+  });
+
+  alert("Menu eliminato!");
+
+  apriMenu();
+
+}
+
 async function salvaTelefono() {
 
   const testo = document.getElementById("telefono").value;
