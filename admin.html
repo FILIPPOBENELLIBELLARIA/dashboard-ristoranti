@@ -741,30 +741,26 @@ async function apriIcona() {
           Icona / Logo
         </h1>
 
-        <div class="upload" style="margin:0; display:flex; gap:10px; align-items:center;">
+  <label class="file-btn">
+    📁 Scegli File
+    <input 
+      type="file" 
+      id="icona"
+      hidden
+      onchange="anteprimaIcona(event)"
+    >
+  </label>
 
-          <label class="file-btn">
+  <button class="file-btn" onclick="caricaIcona()">
+    📤 Carica Icona
+  </button>
 
-            📁 Scegli File
+  <button class="file-btn" onclick="window.location.href='admin.html'">
+    ⬅ Torna Home
+  </button>
 
-            <input 
-              type="file" 
-              id="icona"
-              hidden
-              onchange="anteprimaIcona(event)"
-            >
-
-          </label>
-
-          <button onclick="caricaIcona()">
-            📤 Carica Icona
-          </button>
-
-          <button onclick="window.location.href='admin.html'">
-            ⬅ Torna Home
-          </button>
-
-        </div>
+</div>
+        
 
       </div>
 
@@ -773,6 +769,28 @@ async function apriIcona() {
         <div class="foto-item">
 
           ${immagine}
+
+          <div style="display:flex; gap:20px; margin-top:30px;">
+
+  <label class="file-btn">
+    📁 Scegli File
+    <input 
+      type="file" 
+      id="icona"
+      hidden
+      onchange="anteprimaIcona(event)"
+    >
+  </label>
+
+  <button class="file-btn" onclick="caricaIcona()">
+    📤 Carica Icona
+  </button>
+
+  <button class="file-btn" onclick="window.location.href='admin.html'">
+    ⬅ Torna Home
+  </button>
+
+</div>
 
         </div>
 
