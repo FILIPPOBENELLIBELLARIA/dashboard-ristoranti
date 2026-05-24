@@ -1008,6 +1008,32 @@ async function salvaBenvenuto() {
 
 }
 
+async function salvaTestoMenu() {
+
+  const testo = document.getElementById("testoMenu").value;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  dati.menu = testo;
+
+  await fetch("/salva-json", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(dati)
+
+  });
+
+  alert("Menu salvato!");
+
+}
+
 async function salvaTelefono() {
 
   const testo = document.getElementById("telefono").value;
