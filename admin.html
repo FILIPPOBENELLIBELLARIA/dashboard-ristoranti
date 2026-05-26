@@ -600,50 +600,47 @@ async function salvaMenuGiorno() {
 async function apriFoto() {
 
   const risposta = await fetch("/lista-foto");
-
   const files = await risposta.json();
 
   let html = `
 
     <div class="card">
 
-      <div style="display:flex; justify-content:flex-start; gap:20px; align-items:center; margin-bottom:30px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
 
         <h1 style="margin:0;">
-          Gestione Foto
+          Galleria
         </h1>
 
-        <div class="upload" style="margin:0; display:flex; gap:10px; align-items:center;">
+        <button class="file-btn" onclick="window.location.href='admin.html'">
+          ⬅ Torna Home
+        </button>
 
-          <label class="file-btn">
+      </div>
 
-            📁 Scegli File
+      <div class="upload" style="margin:0; display:flex; gap:10px; align-items:center;">
 
-            <input 
-              type="file" 
-              id="foto"
-              multiple
-              hidden
-            >
+        <label class="file-btn">
+          📁 Scegli File
+          <input 
+            type="file" 
+            id="foto"
+            multiple
+            hidden
+          >
+        </label>
 
-          </label>
-
-          <button onclick="caricaFoto()">
-            📤 Carica Foto
-          </button>
-
-        </div>
+        <button onclick="caricaFoto()">
+          📤 Carica Foto
+        </button>
 
       </div>
 
       <div class="galleria">
-
   `;
 
   files.forEach(file => {
-
     html += `
-
       <div class="foto-item">
 
         <img src="gallery/${file}">
@@ -653,6 +650,19 @@ async function apriFoto() {
         </button>
 
       </div>
+    `;
+  });
+
+  html += `
+      </div>
+
+    </div>
+
+  `;
+
+  document.getElementById("contenuto").innerHTML = html;
+
+}
 
     `;
 
