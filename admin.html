@@ -498,16 +498,13 @@ files.forEach(file => {
   }
 
 });
+  
+}//
 
-
-
-
-  async function caricaMenu() {
+async function caricaMenu() {
 
   const fileInput = document.getElementById("menuFile");
 
-  console.log(fileInput.files[0]);
-  
   const formData = new FormData();
 
   formData.append("menu", fileInput.files[0]);
@@ -520,12 +517,11 @@ files.forEach(file => {
 
   });
      
-    apriMenu();
-    alert("Menu caricato!");
+  apriMenu();
 
-  }
+  alert("Menu caricato!");
 
-}//
+}
 
 
 async function apriMenuGiorno() {
