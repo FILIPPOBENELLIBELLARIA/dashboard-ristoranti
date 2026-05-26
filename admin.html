@@ -765,15 +765,20 @@ async function apriTelefono() {
     <div class="card">
 
       <div style="display:flex; gap:20px; align-items:center; margin-bottom:30px;">
-        <h1 style="margin:0;">📞 Telefono</h1>
 
-        <button onclick="window.location.href='admin.html'">
-          ⬅ Torna Home
-        </button>
-      </div>
+  <h1 style="margin:0;">📞 Telefono</h1>
 
-      <textarea id="telefono"></textarea>
+  <button class="file-btn" onclick="salvaTelefono()">
+    💾 Salva
+  </button>
 
+  <button class="file-btn" onclick="window.location.href='admin.html'">
+    ⬅ Torna Home
+  </button>
+
+</div>
+
+<textarea id="telefono"></textarea>
       <button onclick="window.location.href='admin.html'">
      ⬅ Torna Home
      </button>
