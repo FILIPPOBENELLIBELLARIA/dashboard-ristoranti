@@ -712,87 +712,54 @@ document.getElementById("testoBenvenuto").value =
 async function apriIcona() {
 
   const risposta = await fetch("/lista-icona");
-
   const files = await risposta.json();
 
   let immagine = "";
 
-  if(files.length > 0) {
-
+  if (files.length > 0) {
     immagine = `
-    
       <img 
         id="previewIcona"
         src="/icona/${files[0]}"
         style="max-width:200px; border-radius:12px;"
       >
-
     `;
-
   }
 
   let html = `
 
     <div class="card">
 
-      <div style="display:flex; justify-content:flex-start; gap:20px; align-items:center; margin-bottom:30px;">
+      <!-- TITOLO -->
+      <h1 style="margin-bottom:20px;">
+        Icona / Logo
+      </h1>
 
-        <h1 style="margin:0;">
-          Icona / Logo
-        </h1>
-
-  <label class="file-btn">
-    📁 Scegli File
-    <input 
-      type="file" 
-      id="icona"
-      hidden
-      onchange="anteprimaIcona(event)"
-    >
-  </label>
-
-  <button class="file-btn" onclick="caricaIcona()">
-    📤 Carica Icona
-  </button>
-
-  <button class="file-btn" onclick="window.location.href='admin.html'">
-    ⬅ Torna Home
-  </button>
-
-</div>
-        
-
+      <!-- IMMAGINE -->
+      <div style="margin-bottom:20px;">
+        ${immagine}
       </div>
 
-      <div class="galleria">
+      <!-- BOTTONI SOTTO (UNICI) -->
+      <div style="display:flex; gap:20px; margin-top:30px;">
 
-        <div class="foto-item">
+        <label class="file-btn">
+          📁 Scegli File
+          <input 
+            type="file" 
+            id="icona"
+            hidden
+            onchange="anteprimaIcona(event)"
+          >
+        </label>
 
-          ${immagine}
+        <button class="file-btn" onclick="caricaIcona()">
+          📤 Carica Icona
+        </button>
 
-          <div style="display:flex; gap:20px; margin-top:30px;">
-
-  <label class="file-btn">
-    📁 Scegli File
-    <input 
-      type="file" 
-      id="icona"
-      hidden
-      onchange="anteprimaIcona(event)"
-    >
-  </label>
-
-  <button class="file-btn" onclick="caricaIcona()">
-    📤 Carica Icona
-  </button>
-
-  <button class="file-btn" onclick="window.location.href='admin.html'">
-    ⬅ Torna Home
-  </button>
-
-</div>
-
-        </div>
+        <button class="file-btn" onclick="window.location.href='admin.html'">
+          ⬅ Torna Home
+        </button>
 
       </div>
 
