@@ -413,7 +413,7 @@
 
  async function apriMenu() {
 
-document.getElementById("contenuto").innerHTML = `
+  document.getElementById("contenuto").innerHTML = `
 
   <div class="card">
 
@@ -458,6 +458,12 @@ document.getElementById("contenuto").innerHTML = `
   </div>
 
 `;
+
+const risposta = await fetch("testo.json");
+
+const dati = await risposta.json();
+
+document.getElementById("testoMenu").value = dati.menu || "";
 
 const rispostaLista = await fetch("/lista-menu");
 
