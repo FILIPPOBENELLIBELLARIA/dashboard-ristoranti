@@ -499,6 +499,7 @@ files.forEach(file => {
 
 });
 
+
   async function caricaMenu() {
 
   const fileInput = document.getElementById("menuFile");
@@ -774,42 +775,29 @@ async function apriIcona() {
 async function apriTelefono() {
 
   document.getElementById("contenuto").innerHTML = `
-
     <div class="card">
 
-      <div style="display:flex; justify-content:flex-start; gap:20px; align-items:center; margin-bottom:30px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h1 style="margin:0;">📞 Telefono</h1>
 
-  <h1 style="margin:0;">
-    📞 Telefono
-  </h1>
-
-  <div class="upload" style="margin:0; display:flex; gap:10px; align-items:center;">
-
-    <button onclick="salvaTelefono()">
-      💾 Salva
-    </button>
-
-    <button onclick="window.location.href='admin.html'">
-      ⬅ Torna Home
-    </button>
-
-  </div>
-
-</div>
+        <button onclick="window.location.href='admin.html'">
+          ⬅ Torna Home
+        </button>
+      </div>
 
       <textarea id="telefono"></textarea>
 
-      
-    </div>
+      <button onclick="salvaTelefono()" style="margin-top:20px;">
+        💾 Salva
+      </button>
 
+    </div>
   `;
 
   const risposta = await fetch("testo.json");
+  const dati = await risposta.json();
 
-const dati = await risposta.json();
-
-document.getElementById("telefono").value =
-  dati.telefono || "";
+  document.getElementById("telefono").value = dati.telefono || "";
 
 }
 
