@@ -459,12 +459,6 @@
 
 `;
 
-const risposta = await fetch("testo.json");
-
-const dati = await risposta.json();
-
-document.getElementById("testoMenu").value = dati.menu || "";
-
 const rispostaLista = await fetch("/lista-menu");
 
 const files = await rispostaLista.json();
@@ -510,6 +504,13 @@ document.getElementById("contenuto").innerHTML += `
     ${htmlFiles}
   </div>
 `;
+
+const risposta = await fetch("testo.json");
+
+const dati = await risposta.json();
+
+document.getElementById("testoMenu").value = dati.menu || "";
+
   
 }//
 
