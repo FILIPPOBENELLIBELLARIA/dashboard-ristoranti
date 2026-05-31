@@ -279,9 +279,13 @@ async function mostraTelefono() {
 
 }
 
-function mostraMaps() {
+async function mostraMaps() {
 
-  alert("Maps");
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  window.open(dati.maps, "_blank");
 
 }
 
@@ -295,21 +299,33 @@ async function mostraMail() {
 
 }
 
-function mostraInstagram() {
+async function mostraInstagram() {
 
-  alert("Instagram");
+  const risposta = await fetch("testo.json");
 
-}
+  const dati = await risposta.json();
 
-function mostraFacebook() {
-
-  alert("Facebook");
+  window.open(dati.instagram, "_blank");
 
 }
 
-function mostraWhatsApp() {
+async function mostraFacebook() {
 
-  alert("WhatsApp");
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  window.open(dati.facebook, "_blank");
+
+}
+
+async function mostraWhatsApp() {
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  window.open("https://wa.me/" + dati.whatsapp, "_blank");
 
 }
 
