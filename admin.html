@@ -740,9 +740,18 @@ async function apriNotifiche() {
 
         <div style="display:flex; gap:15px;">
 
-          <button class="file-btn">
-            📂 Carica Foto
-          </button>
+          <input
+  type="file"
+  id="fotoNotifica"
+  accept="image/*"
+  style="display:none;"
+>
+
+<button
+  class="file-btn"
+  onclick="document.getElementById('fotoNotifica').click()">
+  📂 Carica Foto
+</button>
 
           <button class="file-btn" onclick="salvaNotifiche()">
             💾 Salva
