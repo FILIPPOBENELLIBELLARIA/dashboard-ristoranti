@@ -285,9 +285,13 @@ function mostraMaps() {
 
 }
 
-function mostraMail() {
+async function mostraMail() {
 
-  alert("Mail");
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  window.location.href = "mailto:" + dati.mail;
 
 }
 
