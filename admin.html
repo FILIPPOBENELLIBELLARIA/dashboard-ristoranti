@@ -730,38 +730,34 @@ async function apriNotifiche() {
     <div class="card">
 
       <div style="
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
-">
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:20px;
+      ">
 
-  <h1 style="margin:0;">🔔 Notifiche</h1>
+        <h1 style="margin:0;">🔔 Notifiche</h1>
 
-  <div style="display:flex; gap:15px;">
+        <div style="display:flex; gap:15px;">
 
-    <button class="file-btn">
-      📂 Carica Foto
-    </button>
+          <button class="file-btn">
+            📂 Carica Foto
+          </button>
 
-    <button class="file-btn" onclick="salvaNotifiche()">
-      💾 Salva
-    </button>
+          <button class="file-btn" onclick="salvaNotifiche()">
+            💾 Salva
+          </button>
 
-  </div>
+          <button class="file-btn"
+                  onclick="window.location.href='admin.html'">
+            ⬅ Torna Home
+          </button>
 
-</div>
+        </div>
 
-<textarea id="testoNotifiche"></textarea>
+      </div>
 
-<div style="margin-top:30px;">
-
-  <button class="file-btn"
-          onclick="window.location.href='admin.html'">
-    ⬅ Torna Home
-  </button>
-
-</div>
+      <textarea id="testoNotifiche"></textarea>
 
     </div>
 
