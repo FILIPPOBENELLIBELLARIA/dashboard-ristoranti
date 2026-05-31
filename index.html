@@ -264,6 +264,17 @@ async function mostraGalleria() {
   document.getElementById("contenuto").style.display = "block";
 
 }
+
+async function mostraTelefono() {
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  window.location.href = "tel:" + dati.telefono;
+
+}
+
  async function caricaBenvenuto() {
 
   const risposta = await fetch("testo.json");
