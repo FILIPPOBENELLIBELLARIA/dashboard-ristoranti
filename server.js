@@ -24,6 +24,26 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+const storageNotifiche = multer.diskStorage({
+
+  destination: function (req, file, cb) {
+
+    cb(null, "notifiche/");
+
+  },
+
+  filename: function (req, file, cb) {
+
+    cb(null, Date.now() + "-" + file.originalname);
+
+  }
+
+});
+
+const uploadNotifiche = multer({
+  storage: storageNotifiche
+});
+
 const uploadMenu = multer({
 
   storage: multer.diskStorage({
@@ -69,6 +89,8 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 app.use("/menu-upload", express.static("menu-upload"));
+
+app.use("/notifiche", express.static("notifiche"));
 
 app.post("/salva-menu", (req, res) => {
 
@@ -122,6 +144,12 @@ app.post("/upload-foto", upload.single("foto"), (req, res) => {
 
 });
 
+app.post("/upload-notifica", uploadNotifiche.single("foto"), (req, res) => {
+
+  res.send("Foto notifica caricata!");
+
+});
+
 app.post("/upload-menu", uploadMenu.single("menu"), (req, res) => {
 
   res.send("Menu caricato!");
@@ -160,6 +188,14 @@ app.get("/lista-foto", (req, res) => {
 
 });
 
+app.get("/lista-notifiche", (req, res) => {
+
+  const files = fs.readdirSync("notifiche");
+
+  res.json(files);
+
+});
+
 app.get("/lista-menu", (req, res) => {
 
   const files = fs.readdirSync("menu-upload");
@@ -183,6 +219,16 @@ app.delete("/elimina-foto/:nome", (req, res) => {
   fs.unlinkSync("gallery/" + nomeFile);
 
   res.send("Foto eliminata!");
+
+});
+
+app.delete("/elimina-notifica/:nome", (req, res) => {
+
+  const nomeFile = req.params.nome;
+
+  fs.unlinkSync("notifiche/" + nomeFile);
+
+  res.send("Notifica eliminata!");
 
 });
 
