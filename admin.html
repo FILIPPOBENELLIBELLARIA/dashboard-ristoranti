@@ -269,6 +269,18 @@
 </div>
 
 <div 
+  onclick="apriNotifiche()"
+  style="
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    margin-bottom:20px;
+  "
+>
+  🔔 Notifiche
+</div>
+
+<div 
   onclick="apriIcona()"
   style="
     color:white;
@@ -708,6 +720,27 @@ const dati = await risposta.json();
 
 document.getElementById("testoBenvenuto").value =
   dati.benvenuto;
+
+}
+
+async function salvaNotifiche() {
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  dati.notifiche =
+    document.getElementById("testoNotifiche").value;
+
+  await fetch("/salva-json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(dati)
+  });
+
+  alert("Notifica salvata!");
 
 }
 
