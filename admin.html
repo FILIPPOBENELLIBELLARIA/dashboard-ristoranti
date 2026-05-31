@@ -723,6 +723,41 @@ document.getElementById("testoBenvenuto").value =
 
 }
 
+async function apriNotifiche() {
+
+  document.getElementById("contenuto").innerHTML = `
+
+    <div class="card">
+
+      <h1>🔔 Notifiche</h1>
+
+      <textarea id="testoNotifiche"></textarea>
+
+      <div style="display:flex; gap:20px; margin-top:30px;">
+
+        <button class="file-btn" onclick="salvaNotifiche()">
+          💾 Salva
+        </button>
+
+        <button class="file-btn" onclick="window.location.href='admin.html'">
+          ⬅ Torna Home
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  document.getElementById("testoNotifiche").value =
+    dati.notifiche || "";
+
+}
+
 async function salvaNotifiche() {
 
   const risposta = await fetch("testo.json");
