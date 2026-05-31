@@ -768,6 +768,8 @@ async function apriNotifiche() {
 
       <textarea id="testoNotifiche"></textarea>
 
+      <div id="anteprimaNotifiche" style="margin-top:20px;"></div>
+
     </div>
 
   `;
@@ -778,6 +780,28 @@ async function apriNotifiche() {
 
   document.getElementById("testoNotifiche").value =
     dati.notifiche || "";
+
+    document.getElementById("fotoNotifica").onchange = function(event) {
+
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+
+    document.getElementById("anteprimaNotifiche").innerHTML = `
+      <img
+        src="${e.target.result}"
+        style="max-width:300px; border-radius:10px;">
+    `;
+
+  };
+
+  reader.readAsDataURL(file);
+
+};
 
 }
 
