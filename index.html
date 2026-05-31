@@ -90,7 +90,7 @@ button {
   
 <div style="display:flex; justify-content:center; gap: 8px; margin-top: 10px;">
 
-<button class="social-btn">📍</button>
+<button class="social-btn" onclick="mostraMaps()">📍</button>
 
 <button class="social-btn">📸</button>
 
@@ -272,6 +272,12 @@ async function mostraTelefono() {
   const dati = await risposta.json();
 
   window.location.href = "tel:" + dati.telefono;
+
+}
+
+function mostraMaps() {
+
+  alert("Maps");
 
 }
 
