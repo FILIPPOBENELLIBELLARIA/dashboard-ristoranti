@@ -59,6 +59,14 @@ button {
   padding: 0;
 }
 
+.buttons-round {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
 </style>
 
 </head>
@@ -88,7 +96,7 @@ button {
 
 <button onclick="mostraMail()">📧 Mail</button>
   
-<div style="display:flex; justify-content:center; gap: 4px; margin-top: 10px;">
+<div class="buttons-round">
 
 <button class="social-btn" onclick="mostraMaps()">📍</button>
 
