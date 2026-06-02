@@ -445,9 +445,11 @@
 
       <div style="display:flex; gap:20px; margin-top:30px;">
 
-        <button class="file-btn">
-          💾 Salva
-        </button>
+        <button
+  class="file-btn"
+  onclick="salvaIntestazione()">
+  💾 Salva
+</button>
 
         <button
           class="file-btn"
@@ -460,6 +462,13 @@
     </div>
 
   `;
+
+  const risposta = await fetch("testo.json");
+
+const dati = await risposta.json();
+
+document.getElementById("testoIntestazione").value =
+  dati.intestazione || "";
 
 }
 
@@ -1244,6 +1253,32 @@ function anteprimaIcona(event) {
   reader.readAsDataURL(file);
 
 }
+
+async function salvaIntestazione() {
+
+  const testo = document.getElementById("testoIntestazione").value;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  dati.intestazione = testo;
+
+  await fetch("/salva-json", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(dati)
+
+  });
+
+  alert("Intestazione salvata!");
+
+} 
 
 async function salvaBenvenuto() {
 
