@@ -790,6 +790,12 @@ async function apriNotifiche() {
           </button>
 
           <button
+  class="file-btn"
+  onclick="inviaPushNotifica()">
+  📢 Invia Push
+</button>
+
+          <button
             class="file-btn"
             onclick="window.location.href='admin.html'">
             ⬅ Torna Home
@@ -858,18 +864,28 @@ async function salvaNotifiche() {
     body: JSON.stringify(dati)
   });
 
-  await fetch("/invia-push", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    titolo: "🔔 Ristorante Demo",
-    messaggio: dati.notifiche
-  })
-});
-
   alert("Notifica salvata!");
+
+}
+
+async function inviaPushNotifica() {
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  await fetch("/invia-push", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      titolo: "🔔 Ristorante Demo",
+      messaggio: dati.notifiche
+    })
+  });
+
+  alert("Push inviata!");
 
 }
 
