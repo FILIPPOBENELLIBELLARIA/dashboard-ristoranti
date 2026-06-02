@@ -74,6 +74,23 @@ button {
 
 </style>
 
+<script
+  src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+  defer>
+</script>
+
+<script>
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+OneSignalDeferred.push(async function(OneSignal) {
+
+  await OneSignal.init({
+    appId: "d7dd6728-7d54-4fa6-8fe0-1ba8cf4f2b4b"
+  });
+
+});
+</script>
+
 </head>
 
 <body>
