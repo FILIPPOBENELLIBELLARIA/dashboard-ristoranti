@@ -858,6 +858,17 @@ async function salvaNotifiche() {
     body: JSON.stringify(dati)
   });
 
+  await fetch("/invia-push", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    titolo: "🔔 Ristorante Demo",
+    messaggio: dati.notifiche
+  })
+});
+
   alert("Notifica salvata!");
 
 }

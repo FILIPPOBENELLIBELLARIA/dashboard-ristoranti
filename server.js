@@ -1,5 +1,7 @@
 const express = require("express");
 
+const https = require("https");
+
 const fs = require("fs");
 
 const multer = require("multer");
@@ -272,6 +274,62 @@ app.post("/salva-json", (req, res) => {
   res.send("JSON salvato!");
 
 });
+
+app.post("/invia-push", (req, res) => {
+
+  inviaPush(
+    req.body.titolo,
+    req.body.messaggio
+  );
+
+  res.send("Push inviata!");
+
+});
+
+function inviaPush(titolo, messaggio) {
+
+  const dati = JSON.stringify({
+    app_id: "d7dd6728-7d54-4fa6-8fe0-1ba8cf4f2b4b",
+    included_segments: ["All"],
+    headings: {
+      en: titolo
+    },
+    contents: {
+      en: messaggio
+    }
+  });
+
+  const options = {
+    hostname: "api.onesignal.com",
+    path: "/notifications",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Key ${process.env.ONESIGNAL_API_KEY}`,
+      "Content-Length": Buffer.byteLength(dati)
+    }
+  };
+
+  const req = https.request(options, (res) => {
+
+    let body = "";
+
+    res.on("data", chunk => body += chunk);
+
+    res.on("end", () => {
+      console.log("OneSignal:", body);
+    });
+
+  });
+
+  req.on("error", (err) => {
+    console.log("ERRORE PUSH:", err);
+  });
+
+  req.write(dati);
+  req.end();
+
+}
 
 const PORT = process.env.PORT || 3000;
 
