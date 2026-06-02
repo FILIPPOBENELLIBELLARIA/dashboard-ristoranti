@@ -100,6 +100,8 @@ button {
 <button onclick="mostraTelefono()">📞 Telefono</button>
 
 <button onclick="mostraMail()">📧 Mail</button>
+
+<button onclick="mostraNotifiche()">🔔 Notifiche</button>
   
 <div class="buttons-round">
 
@@ -276,6 +278,47 @@ async function mostraGalleria() {
 </button>
 
 `;
+
+  document.getElementById("contenuto").innerHTML = html;
+  document.getElementById("contenuto").style.display = "block";
+
+}
+
+async function mostraNotifiche() {
+
+  document.getElementById("home").style.display = "none";
+
+  const risposta = await fetch("/lista-notifiche");
+
+  const files = await risposta.json();
+
+  let html = `
+
+    <h2>🔔 Notifiche</h2>
+
+  `;
+
+  files.forEach(file => {
+
+    html += `
+
+      <img
+        src="/notifiche/${file}"
+        style="width:100%; max-width:900px;">
+
+      <br><br>
+
+    `;
+
+  });
+
+  html += `
+
+    <button onclick="tornaHome()">
+      ⬅ Torna Home
+    </button>
+
+  `;
 
   document.getElementById("contenuto").innerHTML = html;
   document.getElementById("contenuto").style.display = "block";
