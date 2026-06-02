@@ -97,7 +97,7 @@ OneSignalDeferred.push(async function(OneSignal) {
    
   <div id="home">
   
-  <h1>Ristorante Demo</h1>
+  <h1 id="titoloApp"></h1>
   
   <div id="logo"></div>
 
@@ -423,6 +423,9 @@ async function mostraWhatsApp() {
   const risposta = await fetch("testo.json");
 
   const dati = await risposta.json();
+
+  document.getElementById("titoloApp").innerHTML =
+  dati.intestazione || "";
 
   document.getElementById("benvenuto").innerHTML =
 `<div style="white-space: pre-wrap; overflow-wrap: break-word; text-align:left; width:100%;">${dati.benvenuto}</div>`;
