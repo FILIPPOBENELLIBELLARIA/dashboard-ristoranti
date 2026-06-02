@@ -146,7 +146,11 @@ app.post("/upload-foto", upload.single("foto"), (req, res) => {
 
 app.post("/upload-notifica", uploadNotifiche.single("foto"), (req, res) => {
 
-  console.log(req.file);
+  console.log("FILE RICEVUTO:", req.file);
+
+  if (!req.file) {
+    return res.status(500).send("NESSUN FILE");
+  }
 
   res.send("Foto notifica caricata!");
 
