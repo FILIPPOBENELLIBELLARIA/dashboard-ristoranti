@@ -146,6 +146,8 @@ app.post("/upload-foto", upload.single("foto"), (req, res) => {
 
 app.post("/upload-notifica", uploadNotifiche.single("foto"), (req, res) => {
 
+  console.log(req.file);
+
   res.send("Foto notifica caricata!");
 
 });
