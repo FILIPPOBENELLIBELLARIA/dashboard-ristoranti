@@ -6,6 +6,10 @@ const multer = require("multer");
 
 const app = express();
 
+if (!fs.existsSync("notifiche")) {
+  fs.mkdirSync("notifiche");
+}
+
 const storage = multer.diskStorage({
 
   destination: function (req, file, cb) {
