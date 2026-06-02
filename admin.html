@@ -433,6 +433,36 @@
 
     aggiornaOrologio();
 
+    async function apriIntestazione() {
+
+  document.getElementById("contenuto").innerHTML = `
+
+    <div class="card">
+
+      <h1>📝 Intestazione</h1>
+
+      <textarea id="testoIntestazione"></textarea>
+
+      <div style="display:flex; gap:20px; margin-top:30px;">
+
+        <button class="file-btn">
+          💾 Salva
+        </button>
+
+        <button
+          class="file-btn"
+          onclick="window.location.href='admin.html'">
+          ⬅ Torna Home
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
     
 
  async function apriMenu() {
