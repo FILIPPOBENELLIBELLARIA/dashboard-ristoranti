@@ -203,7 +203,7 @@
 
   <div class="topbar">
 
-    <div class="topbar-left">
+    <div class="topbar-left" id="titoloRistorante">
       🍽️ Ristorante Demo
     </div>
 
@@ -1276,6 +1276,9 @@ async function salvaIntestazione() {
 
   });
 
+  document.getElementById("titoloRistorante").innerHTML =
+  "🍽️ " + testo;
+  
   alert("Intestazione salvata!");
 
 } 
