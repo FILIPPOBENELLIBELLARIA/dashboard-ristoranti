@@ -433,6 +433,8 @@
 
     aggiornaOrologio();
 
+    caricaIntestazione();
+
     async function apriIntestazione() {
 
   document.getElementById("contenuto").innerHTML = `
@@ -472,7 +474,16 @@ document.getElementById("testoIntestazione").value =
 
 }
 
-    
+async function caricaIntestazione() {
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  document.getElementById("titoloRistorante").innerHTML =
+    dati.intestazione || "";
+
+}    
 
  async function apriMenu() {
 
@@ -1278,7 +1289,7 @@ async function salvaIntestazione() {
 
   document.getElementById("titoloRistorante").innerHTML =
   testo;
-  
+
   alert("Intestazione salvata!");
 
 } 
