@@ -775,11 +775,20 @@ async function apriNotifiche() {
             style="display:none;"
           >
 
-          <button
-            class="file-btn"
-            onclick="document.getElementById('fotoNotifica').click()">
-            📂 Carica Foto
-          </button>
+          <label class="file-btn">
+  📁 Scegli File
+  <input
+    type="file"
+    id="fotoNotifica"
+    accept="image/*"
+    hidden>
+</label>
+
+<button
+  class="file-btn"
+  onclick="caricaNotifica()">
+  📤 Carica Foto
+</button>
 
           <button
             class="file-btn"
@@ -1417,6 +1426,28 @@ async function salvaWhatsapp() {
       apriFoto();
 
     }
+
+    async function caricaNotifica() {
+
+  const fileInput = document.getElementById("fotoNotifica");
+
+  const formData = new FormData();
+
+  formData.append("foto", fileInput.files[0]);
+
+  await fetch("/upload-notifica", {
+
+    method: "POST",
+
+    body: formData
+
+  });
+
+  alert("Foto notifica caricata!");
+
+  apriNotifiche();
+
+}
 
     async function caricaIcona() {
 
