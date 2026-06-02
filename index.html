@@ -292,9 +292,22 @@ async function mostraNotifiche() {
 
   const files = await risposta.json();
 
+  const rispostaTesto = await fetch("testo.json");
+
+  const dati = await rispostaTesto.json();
+
   let html = `
 
     <h2>🔔 Notifiche</h2>
+
+    <div style="
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      width:100%;
+      margin-bottom:20px;
+    ">
+      ${dati.notifiche || ""}
+    </div>
 
   `;
 
