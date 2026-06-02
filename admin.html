@@ -1424,6 +1424,8 @@ async function salvaWhatsapp() {
 
   const fileInput = document.getElementById("fotoNotifica");
 
+  alert("FILE: " + fileInput.files.length);
+
   const formData = new FormData();
 
   formData.append("foto", fileInput.files[0]);
