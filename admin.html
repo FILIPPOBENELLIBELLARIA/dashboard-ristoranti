@@ -725,6 +725,34 @@ document.getElementById("testoBenvenuto").value =
 
 async function apriNotifiche() {
 
+  const risposta = await fetch("testo.json");
+  const dati = await risposta.json();
+
+  const rispostaFoto = await fetch("/lista-notifiche");
+  const files = await rispostaFoto.json();
+
+  let htmlFoto = "";
+
+  files.forEach(file => {
+
+    htmlFoto += `
+
+      <div class="foto-item">
+
+        <img
+          src="/notifiche/${file}"
+          style="max-width:300px; border-radius:10px;">
+
+        <button onclick="eliminaNotifica('${file}')">
+          ELIMINA
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
   document.getElementById("contenuto").innerHTML = `
 
     <div class="card">
@@ -741,24 +769,27 @@ async function apriNotifiche() {
         <div style="display:flex; gap:15px;">
 
           <input
-  type="file"
-  id="fotoNotifica"
-  accept="image/*"
-  style="display:none;"
->
+            type="file"
+            id="fotoNotifica"
+            accept="image/*"
+            style="display:none;"
+          >
 
-<button
-  class="file-btn"
-  onclick="document.getElementById('fotoNotifica').click()">
-  📂 Carica Foto
-</button>
+          <button
+            class="file-btn"
+            onclick="document.getElementById('fotoNotifica').click()">
+            📂 Carica Foto
+          </button>
 
-          <button class="file-btn" onclick="salvaNotifiche()">
+          <button
+            class="file-btn"
+            onclick="salvaNotifiche()">
             💾 Salva
           </button>
 
-          <button class="file-btn"
-                  onclick="window.location.href='admin.html'">
+          <button
+            class="file-btn"
+            onclick="window.location.href='admin.html'">
             ⬅ Torna Home
           </button>
 
@@ -766,42 +797,45 @@ async function apriNotifiche() {
 
       </div>
 
-      <textarea id="testoNotifiche"></textarea>
+      <textarea id="testoNotifiche">${dati.notifiche || ""}</textarea>
 
-      <div id="anteprimaNotifiche" style="margin-top:20px;"></div>
+      <div class="galleria">
+
+        ${htmlFoto}
+
+      </div>
 
     </div>
 
   `;
 
-  const risposta = await fetch("testo.json");
+  document.getElementById("fotoNotifica").onchange = function(event) {
 
-  const dati = await risposta.json();
+    const file = event.target.files[0];
 
-  document.getElementById("testoNotifiche").value =
-    dati.notifiche || "";
+    if (!file) return;
 
-    document.getElementById("fotoNotifica").onchange = function(event) {
+    const reader = new FileReader();
 
-  const file = event.target.files[0];
+    reader.onload = function(e) {
 
-  if (!file) return;
+      document.querySelector(".galleria").innerHTML += `
 
-  const reader = new FileReader();
+        <div class="foto-item">
 
-  reader.onload = function(e) {
+          <img
+            src="${e.target.result}"
+            style="max-width:300px; border-radius:10px;">
 
-    document.getElementById("anteprimaNotifiche").innerHTML = `
-      <img
-        src="${e.target.result}"
-        style="max-width:300px; border-radius:10px;">
-    `;
+        </div>
+
+      `;
+
+    };
+
+    reader.readAsDataURL(file);
 
   };
-
-  reader.readAsDataURL(file);
-
-};
 
 }
 
@@ -1408,19 +1442,33 @@ document.getElementById("previewIcona").src =
 
     async function eliminaFoto(nome) {
 
-      await fetch("/elimina-foto/" + nome, {
+  await fetch("/elimina-foto/" + nome, {
 
-        method: "DELETE"
+    method: "DELETE"
 
-      });
+  });
 
-      alert("Foto eliminata!");
+  alert("Foto eliminata!");
 
-      apriFoto();
+  apriFoto();
 
-    }
+}
 
-  </script>
+async function eliminaNotifica(nome) {
+
+  await fetch("/elimina-notifica/" + nome, {
+
+    method: "DELETE"
+
+  });
+
+  alert("Notifica eliminata!");
+
+  apriNotifiche();
+
+}
+
+</script>
 
 </body>
 

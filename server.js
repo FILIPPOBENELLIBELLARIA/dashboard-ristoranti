@@ -190,9 +190,19 @@ app.get("/lista-foto", (req, res) => {
 
 app.get("/lista-notifiche", (req, res) => {
 
-  const files = fs.readdirSync("notifiche");
+  try {
 
-  res.json(files);
+    const files = fs.readdirSync("notifiche");
+
+    res.json(files);
+
+  } catch(err) {
+
+    console.log(err);
+
+    res.json([]);
+
+  }
 
 });
 
