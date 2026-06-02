@@ -268,5 +268,6 @@ app.post("/salva-json", (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, "0.0.0.0", () => {
-console.log("Server avviato!");
+  console.log("Server avviato!");
+  console.log("VERSIONE DEBUG NOTIFICHE");
 });
