@@ -317,17 +317,17 @@ async function mostraNotifiche() {
 
     <h2>🔔 Notifiche</h2>
 
-  <div style="
+ <div style="
   white-space: pre-wrap;
   overflow-wrap: break-word;
   text-align:left;
-  max-width:900px;
-  margin:0 auto 20px auto;
+  width:95%;
+  margin-bottom:20px;
   line-height:1.6;
+  font-size:30px;
 ">
-      ${dati.notifiche || ""}
-    </div>
-
+ ${dati.notifiche || ""}
+  </div>
   `;
 
   files.forEach(file => {
