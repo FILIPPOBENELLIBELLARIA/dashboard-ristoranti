@@ -252,7 +252,7 @@
     margin-bottom:20px;
   "
 >
-  🍝 Menu
+  🍝 <span id="testoPulsante1">Menu</span>
 </div>
 
 <div
@@ -264,7 +264,7 @@
     margin-bottom:20px;
   "
 >
-  ⭐ Menu del Giorno
+  ⭐ <span id="testoPulsante2">Menu del Giorno</span>
 </div>
  <div 
   onclick="apriFoto()"
@@ -442,6 +442,22 @@
     aggiornaOrologio();
 
     caricaIntestazione();
+
+    caricaNomiPulsanti();
+    
+    async function caricaNomiPulsanti() {
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  document.getElementById("testoPulsante1").innerHTML =
+    dati.nomePulsante1 || "Menu";
+
+  document.getElementById("testoPulsante2").innerHTML =
+    dati.nomePulsante2 || "Menu del Giorno";
+
+}
 
     async function apriImpostazioni() {
 
