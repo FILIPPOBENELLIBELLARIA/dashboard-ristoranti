@@ -457,6 +457,12 @@
   document.getElementById("testoPulsante2").innerHTML =
     dati.nomePulsante2 || "";
 
+  document.getElementById("testoPulsante1").parentElement.style.display =
+  dati.mostraPulsante1 === false ? "none" : "block";
+
+  document.getElementById("testoPulsante2").parentElement.style.display =
+  dati.mostraPulsante2 === false ? "none" : "block";
+
 }
 
     async function apriImpostazioni() {
@@ -483,6 +489,16 @@
 
 <br><br>
 
+<label style="font-size:18px;">
+  <input
+    type="checkbox"
+    id="mostraPulsante1"
+  >
+  Mostra Pulsante 1
+</label>
+
+<br><br>
+
 <h3>Nome Pulsante 2</h3>
 
 <input
@@ -496,7 +512,16 @@
     border:1px solid #ccc;
   "
 >
+
 <br><br>
+
+<label style="font-size:18px;">
+  <input
+    type="checkbox"
+    id="mostraPulsante2"
+  >
+  Mostra Pulsante 2
+</label>
 
 <div style="display:flex; gap:20px; margin-top:20px;">
 
@@ -528,6 +553,12 @@ document.getElementById("nomePulsante1").value =
 
 document.getElementById("nomePulsante2").value =
   dati.nomePulsante2 || "";
+
+document.getElementById("mostraPulsante1").checked =
+  dati.mostraPulsante1 !== false;
+
+document.getElementById("mostraPulsante2").checked =
+  dati.mostraPulsante2 !== false;
 
 }
 
@@ -1369,6 +1400,12 @@ async function salvaImpostazioni() {
   const nome2 =
     document.getElementById("nomePulsante2").value;
 
+  const mostra1 =
+  document.getElementById("mostraPulsante1").checked;
+
+  const mostra2 =
+  document.getElementById("mostraPulsante2").checked;  
+
   const risposta = await fetch("testo.json");
 
   const dati = await risposta.json();
@@ -1376,6 +1413,10 @@ async function salvaImpostazioni() {
   dati.nomePulsante1 = nome1;
 
   dati.nomePulsante2 = nome2;
+
+  dati.mostraPulsante1 = mostra1;
+
+  dati.mostraPulsante2 = mostra2;
 
   await fetch("/salva-json", {
 
