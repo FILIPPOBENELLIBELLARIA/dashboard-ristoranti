@@ -1335,9 +1335,35 @@ function anteprimaIcona(event) {
 
 }
 
-function salvaImpostazioni() {
+async function salvaImpostazioni() {
 
-  alert("FUNZIONA");
+  const nome1 =
+    document.getElementById("nomePulsante1").value;
+
+  const nome2 =
+    document.getElementById("nomePulsante2").value;
+
+  const risposta = await fetch("testo.json");
+
+  const dati = await risposta.json();
+
+  dati.nomePulsante1 = nome1;
+
+  dati.nomePulsante2 = nome2;
+
+  await fetch("/salva-json", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(dati)
+
+  });
+
+  alert("Impostazioni salvate!");
 
 }
 
