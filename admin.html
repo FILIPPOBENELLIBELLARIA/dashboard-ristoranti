@@ -519,6 +519,16 @@
 
   `;
 
+  const risposta = await fetch("testo.json");
+
+const dati = await risposta.json();
+
+document.getElementById("nomePulsante1").value =
+  dati.nomePulsante1 || "";
+
+document.getElementById("nomePulsante2").value =
+  dati.nomePulsante2 || "";
+
 }
 
     async function apriIntestazione() {
@@ -1382,8 +1392,8 @@ async function salvaImpostazioni() {
   alert("Impostazioni salvate!");
 
 }
-
-async function salvaIntestazione() {
+ 
+  async function salvaIntestazione() {
 
   const testo = document.getElementById("testoIntestazione").value;
 
