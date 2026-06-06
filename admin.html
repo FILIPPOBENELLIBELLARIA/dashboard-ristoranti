@@ -452,10 +452,10 @@
   const dati = await risposta.json();
 
   document.getElementById("testoPulsante1").innerHTML =
-    dati.nomePulsante1 || "Menu";
+    dati.nomePulsante1 || "";
 
   document.getElementById("testoPulsante2").innerHTML =
-    dati.nomePulsante2 || "Menu del Giorno";
+    dati.nomePulsante2 || "";
 
 }
 
@@ -1388,6 +1388,12 @@ async function salvaImpostazioni() {
     body: JSON.stringify(dati)
 
   });
+
+  document.getElementById("testoPulsante1").innerHTML =
+  nome1;
+
+document.getElementById("testoPulsante2").innerHTML =
+  nome2;
 
   alert("Impostazioni salvate!");
 
