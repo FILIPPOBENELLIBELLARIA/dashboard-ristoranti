@@ -104,12 +104,15 @@ OneSignalDeferred.push(async function(OneSignal) {
   <div id="benvenuto"></div>
   <br>
 
-<button onclick="mostraMenu()">
-  🍝 <span id="testoPulsante1"></span>
+<button
+  id="btnPulsante1"
+  onclick="mostraMenu()"
+>
+  ⭐ <span id="testoPulsante1"></span>
 </button>
 
-<button 
-  id="btnMenuGiorno"
+<button
+  id="btnPulsante2"
   onclick="mostraMenuGiorno()"
 >
   ⭐ <span id="testoPulsante2"></span>
@@ -151,10 +154,16 @@ async function caricaNomiPulsanti() {
   const dati = await risposta.json();
 
   document.getElementById("testoPulsante1").innerHTML =
-    dati.nomePulsante1 || "Menù";
+    dati.nomePulsante1 || "";
 
   document.getElementById("testoPulsante2").innerHTML =
-    dati.nomePulsante2 || "Menu del Giorno";
+    dati.nomePulsante2 || "";
+
+  document.getElementById("btnPulsante1").style.display =
+    dati.mostraPulsante1 === false ? "none" : "block";
+
+  document.getElementById("btnPulsante2").style.display =
+    dati.mostraPulsante2 === false ? "none" : "block";
 
 }
 
@@ -458,13 +467,7 @@ document.getElementById("logo").innerHTML = `
 caricaBenvenuto();
 
 caricaNomiPulsanti();
-const menuGiornoAttivo = localStorage.getItem("menuGiornoAttivo");
 
-if(menuGiornoAttivo === "false") {
-
-  document.getElementById("btnMenuGiorno").style.display = "none";
-
-}
 </script>
 </body>
 </html>
